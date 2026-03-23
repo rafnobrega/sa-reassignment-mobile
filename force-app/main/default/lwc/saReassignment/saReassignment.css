@@ -52,6 +52,13 @@
     align-items: center;
 }
 
+/* Terminal status banner */
+.terminal-banner {
+    background-color: var(--slds-g-color-error-base-40, #ba0517);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
 /* Resource list scroll area */
 .resource-list {
     max-height: 20rem;

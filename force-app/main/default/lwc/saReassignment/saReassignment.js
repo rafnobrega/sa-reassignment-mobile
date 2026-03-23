@@ -51,11 +51,15 @@ export default class SaReassignment extends LightningElement {
     // ── Computed Properties ──
 
     get showNoResourceError() {
-        return !this.isLoading && !this.showSuccess && this.context && !this.context.userHasResource;
+        return !this.isLoading && !this.showSuccess && !this.showTerminalStatus && this.context && !this.context.userHasResource;
+    }
+
+    get showTerminalStatus() {
+        return !this.isLoading && !this.showSuccess && this.context?.isTerminalStatus;
     }
 
     get showContent() {
-        return !this.isLoading && !this.showSuccess && this.context && this.context.userHasResource;
+        return !this.isLoading && !this.showSuccess && !this.showTerminalStatus && this.context && this.context.userHasResource;
     }
 
     get crewStatusLabel() {

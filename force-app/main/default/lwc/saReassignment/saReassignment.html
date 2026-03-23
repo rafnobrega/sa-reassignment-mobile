@@ -21,6 +21,23 @@
             </div>
         </template>
 
+        <!-- Terminal status: SA is Completed/Canceled/Cannot Complete -->
+        <template lwc:if={showTerminalStatus}>
+            <div class="slds-p-around_medium">
+                <div class="slds-box slds-box_xx-small slds-theme_error terminal-banner">
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                        <lightning-icon icon-name="utility:lock" variant="inverse" size="small" class="slds-m-right_small"></lightning-icon>
+                        <div>
+                            <p class="slds-text-heading_small slds-text-color_inverse">Reassignment Unavailable</p>
+                            <p class="slds-text-color_inverse slds-m-top_xx-small">
+                                This appointment is <strong>{context.saStatus}</strong> and cannot be reassigned.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
         <!-- Main content -->
         <template lwc:if={showContent}>
             <div class="slds-p-horizontal_medium slds-p-bottom_medium">

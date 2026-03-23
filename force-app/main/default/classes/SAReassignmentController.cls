@@ -16,7 +16,7 @@ public with sharing class SAReassignmentController {
         // 1. Get the Service Appointment details (crew size for warnings)
         // SYSTEM_MODE needed here: Minimum_Crew_Size__c may not have FLS for all profiles
         List<ServiceAppointment> saList = [
-            SELECT Id, AppointmentNumber, Minimum_Crew_Size__c
+            SELECT Id, AppointmentNumber, Minimum_Crew_Size__c, Status, StatusCategory
             FROM ServiceAppointment
             WHERE Id = :serviceAppointmentId
             WITH SYSTEM_MODE
@@ -30,6 +30,15 @@ public with sharing class SAReassignmentController {
         ServiceAppointment sa = saList[0];
         ctx.minimumCrewSize = sa.Minimum_Crew_Size__c != null
             ? Integer.valueOf(sa.Minimum_Crew_Size__c) : null;
+        ctx.saStatus = sa.Status;
+        ctx.saStatusCategory = sa.StatusCategory;
+
+        // Block reassignment on terminal statuses (FSL triggers will reject the DML)
+        Set<String> terminalCategories = new Set<String>{ 'Completed', 'Canceled', 'CannotComplete' };
+        if (terminalCategories.contains(sa.StatusCategory)) {
+            ctx.isTerminalStatus = true;
+            return ctx;
+        }
 
         // 2. Get current assigned resource(s)
         List<AssignedResource> currentAssignments = [
@@ -212,6 +221,9 @@ public with sharing class SAReassignmentController {
         @AuraEnabled public Boolean isCrewLeader = false;
 
         @AuraEnabled public Integer minimumCrewSize;
+        @AuraEnabled public String saStatus;
+        @AuraEnabled public String saStatusCategory;
+        @AuraEnabled public Boolean isTerminalStatus = false;
         @AuraEnabled public List<ResourceOption> eligibleResources;
     }
 
