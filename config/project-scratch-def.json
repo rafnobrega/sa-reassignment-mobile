@@ -1,0 +1,13 @@
+{
+  "orgName": "sa-reassignment-mobile",
+  "edition": "Developer",
+  "features": ["FieldService"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStorage": false
+    }
+  }
+}

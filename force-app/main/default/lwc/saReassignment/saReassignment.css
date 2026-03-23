@@ -1,0 +1,59 @@
+/* Resource selection cards */
+.resource-card {
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+}
+
+.resource-card:hover {
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+}
+
+.resource-card.selected {
+    border-color: var(--slds-g-color-brand-base-50, #0176d3);
+    background-color: var(--slds-g-color-brand-base-95, #eef4ff);
+}
+
+.resource-card:focus {
+    outline: 2px solid var(--slds-g-color-brand-base-50, #0176d3);
+    outline-offset: 2px;
+}
+
+/* Current assignment box */
+.current-assignment {
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+}
+
+/* Crew badge */
+.crew-badge {
+    --slds-c-badge-color-background: var(--slds-g-color-success-base-40, #2e844a);
+    --slds-c-badge-text-color: #fff;
+}
+
+.no-crew-badge {
+    --slds-c-badge-color-background: var(--slds-g-color-neutral-base-80, #c9c9c9);
+    --slds-c-badge-text-color: var(--slds-g-color-neutral-base-30, #444);
+}
+
+.leader-badge {
+    --slds-c-badge-color-background: var(--slds-g-color-brand-base-50, #0176d3);
+    --slds-c-badge-text-color: #fff;
+}
+
+/* Warning banner */
+.slds-alert_warning {
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Resource list scroll area */
+.resource-list {
+    max-height: 20rem;
+    overflow-y: auto;
+}

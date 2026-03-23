@@ -1,0 +1,17 @@
+# Salesforce cache
+.sf/
+.sfdx/
+deploy-options.json
+
+# LWC
+**/lwc/**/*.css.map
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

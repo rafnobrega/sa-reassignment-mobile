@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_Crew_Size__c</fullName>
+    <label>Minimum Crew Size</label>
+    <type>Number</type>
+    <precision>3</precision>
+    <scale>0</scale>
+    <required>false</required>
+    <defaultValue>1</defaultValue>
+    <description>Minimum number of crew members required for this appointment. Used by the SA Reassignment component to warn technicians when a crew-based assignment may be needed.</description>
+    <externalId>false</externalId>
+    <unique>false</unique>
+</CustomField>
