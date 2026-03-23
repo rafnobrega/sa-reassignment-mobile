@@ -2,6 +2,9 @@
 
 A Lightning Web Component for Salesforce Field Service that enables field technicians to reassign a Service Appointment to another crew member — directly from the record page or as a screen action.
 
+<img width="2723" height="1718" alt="Untitled-1" src="https://github.com/user-attachments/assets/31f6eb7c-5f19-4b5d-b8ab-127b7c749d5b" />
+
+
 ## Overview
 
 When a field technician needs to hand off a job to a teammate, this component provides a crew-aware reassignment flow. It automatically detects the logged-in user's crew membership and presents only valid reassignment targets.
