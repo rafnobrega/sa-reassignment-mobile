@@ -10,6 +10,7 @@ When a field technician needs to hand off a job to a teammate, this component pr
 
 - **Crew-aware**: Automatically detects the logged-in user's Service Crew and shows eligible crew members
 - **Non-crew fallback**: If the user isn't in a crew, shows all active technicians with configurable warnings based on Minimum Crew Size
+- **Status-aware**: Automatically detects terminal SA statuses (Completed, Canceled, Cannot Complete) and shows a locked banner instead of the reassignment UI
 - **Guard rails**: Prevents reassignment to the currently assigned technician, validates inputs, and displays clear error states
 - **Mobile-optimized**: Touch-friendly card-based selection UI designed for the Field Service Mobile App
 - **Accessible**: Keyboard navigation support, ARIA roles, and focus management
@@ -124,7 +125,7 @@ This component relies on standard Salesforce Field Service objects:
 
 | Object | Role | Key Fields Used |
 |--------|------|-----------------|
-| `ServiceAppointment` | Record page context | `Id`, `Minimum_Crew_Size__c` |
+| `ServiceAppointment` | Record page context | `Id`, `Status`, `StatusCategory`, `Minimum_Crew_Size__c` |
 | `AssignedResource` | Junction: SA ↔ Resource | `ServiceAppointmentId`, `ServiceResourceId`, `ServiceCrewId` |
 | `ServiceResource` | Represents a technician | `RelatedRecordId` (→ User), `IsActive`, `ResourceType` |
 | `ServiceCrew` | A crew/team | `Name` |
@@ -135,6 +136,7 @@ This component relies on standard Salesforce Field Service objects:
 | State | Description |
 |-------|-------------|
 | **Loading** | Spinner while fetching context from Apex |
+| **Terminal Status** | Red locked banner — SA is Completed/Canceled/Cannot Complete, reassignment blocked |
 | **No Resource** | Error: logged-in user has no active ServiceResource |
 | **Crew Mode** | User belongs to a crew — shows selectable crew member cards |
 | **Non-Crew Mode** | User doesn't belong to a crew — shows warning + all active technicians |
@@ -147,6 +149,7 @@ This component relies on standard Salesforce Field Service objects:
 - All DML operations use `as user` for CRUD/FLS enforcement
 - The Apex controller uses `with sharing` to respect org sharing rules
 - Input validation prevents null parameters and same-resource reassignment
+- Terminal status check blocks reassignment before any DML, preventing FSL managed trigger errors
 
 ## Test Coverage
 
